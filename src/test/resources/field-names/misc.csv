@@ -1,0 +1,5 @@
+# Misc. fieldNames
+fieldName, prettyName
+testString, String
+testBoolean, Boolean
+testChar, Character

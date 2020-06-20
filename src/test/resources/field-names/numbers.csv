@@ -1,0 +1,7 @@
+# Number values for unit testing
+fieldName, prettyName
+testInt, Integer
+testShort, Short
+testFloat, Float
+testDouble, Double
+testLong, Long
