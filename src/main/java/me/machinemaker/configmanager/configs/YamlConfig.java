@@ -1,12 +1,13 @@
 package me.machinemaker.configmanager.configs;
 
+import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.IOException;
 
-public class YamlConfig implements IConfig {
+public class YamlConfig implements IConfig<YamlConfiguration> {
 
     File configurationFile;
     YamlConfiguration configuration;
@@ -38,5 +39,19 @@ public class YamlConfig implements IConfig {
         } catch (IOException exception) {
             exception.printStackTrace();
         }
+    }
+
+    @Override
+    public void reload() {
+        try {
+            configuration.load(configurationFile);
+        } catch (IOException | InvalidConfigurationException exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    @Override
+    public YamlConfiguration get() {
+        return configuration;
     }
 }

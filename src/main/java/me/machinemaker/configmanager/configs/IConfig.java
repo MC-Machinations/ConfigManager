@@ -1,8 +1,6 @@
 package me.machinemaker.configmanager.configs;
 
-import java.io.File;
-
-public interface IConfig {
+public interface IConfig<T> {
 
     boolean isSet(String path);
 
@@ -11,4 +9,8 @@ public interface IConfig {
     void set(String path, Object value);
 
     void save();
+
+    void reload();
+
+    T get();
 }

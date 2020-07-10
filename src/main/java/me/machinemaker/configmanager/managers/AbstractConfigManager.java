@@ -1,13 +1,14 @@
 package me.machinemaker.configmanager.managers;
 
 import me.machinemaker.configmanager.Lang;
+import me.machinemaker.configmanager.configs.IConfig;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class AbstractConfigManager<T> implements IConfigManager<T> {
+public abstract class AbstractConfigManager<T extends IConfig> implements IConfigManager<T> {
 
     protected final Map<String, T> configs;
     protected final JavaPlugin plugin;
@@ -20,6 +21,11 @@ public abstract class AbstractConfigManager<T> implements IConfigManager<T> {
     @Override
     public T getConfig(String name) {
         return this.configs.get(name);
+    }
+
+    @Override
+    public void reloadConfig(String name) {
+        if (this.configs.containsKey(name)) this.configs.get(name).reload();
     }
 
     protected void info(String msg) {

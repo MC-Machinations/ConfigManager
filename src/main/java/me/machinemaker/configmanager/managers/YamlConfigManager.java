@@ -1,13 +1,13 @@
 package me.machinemaker.configmanager.managers;
 
-import org.bukkit.configuration.file.YamlConfiguration;
+import me.machinemaker.configmanager.configs.YamlConfig;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.io.IOException;
 
-public class YamlConfigManager extends AbstractConfigManager<YamlConfiguration> {
+public class YamlConfigManager extends AbstractConfigManager<YamlConfig> {
 
     public YamlConfigManager(@NotNull JavaPlugin plugin) {
         super(plugin);
@@ -29,7 +29,7 @@ public class YamlConfigManager extends AbstractConfigManager<YamlConfiguration> 
             this.error(String.format("Could not create file for %s", fileName));
             return false;
         }
-
+        this.configs.put(name, new YamlConfig(configFile));
         return  createdDirs || createdNewFile;
     }
 }
